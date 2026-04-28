@@ -1,0 +1,93 @@
+using System;
+using System.Collections.Generic;
+using System.Text;
+namespace School
+{
+    public class Users
+    {
+        public string Ad{get; set;}
+        public string Soyad{get; set;}
+        public string Ixtisas{get; set;}
+    }
+    public class Student : Users
+    {
+        public int Ortalama{get; set;}
+    }
+    public class Teacher : Users
+    {
+        public int Staj{get; set;}
+    }
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            List<Student> studentList= new List<Student>();
+            List<Teacher> teacherList= new List<Teacher>();
+
+            while (true)
+            {
+                Console.WriteLine("\n1 -  Telebe elave et");
+                Console.WriteLine("2 -  Muellim elave et");
+                Console.WriteLine("3 -  Telebeni sil");
+                Console.WriteLine("4 -  Muellimi sil");
+                Console.WriteLine("5 -  siyahilari goster");
+                Console.WriteLine("0 -  cixis");
+                
+                Console.Write("secim et:");
+                int secim = Convert.ToInt32(Console.ReadLine());
+                if(secim == 0) break;
+
+                switch(secim)
+                {
+                    case 1: Student s = new Student();
+                    Console.WriteLine("Ad:");
+                    s.Ad=Console.ReadLine();
+                    Console.WriteLine("Soyad:");
+                    s.Soyad=Console.ReadLine();
+                    Console.WriteLine("ixtisas: ");
+                    s.Ixtisas=Console.ReadLine();
+                    Console.WriteLine("ortalama:");
+                    s.Ortalama=Convert.ToInt32(Console.ReadLine());
+
+                    studentList.Add(s);
+                    break;
+
+                    case 2: Teacher t = new Teacher();
+                    Console.WriteLine("Ad:");
+                    t.Ad=Console.ReadLine();
+                    Console.WriteLine("Soyad:");
+                    t.Soyad=Console.ReadLine();
+                    Console.WriteLine("ixtisas: ");
+                    t.Ixtisas=Console.ReadLine();
+                    Console.WriteLine("Staj");
+                    t.Staj=Convert.ToInt32(Console.ReadLine());
+
+                    teacherList.Add(t);
+                    break;
+
+                    case 3:Console.WriteLine("Silinecek telebenin indeksi:");
+                    int n= Convert.ToInt32(Console.ReadLine());
+                    studentList.RemoveAt(n);
+                    break;
+
+                    case 4:Console.WriteLine("Silinecek muellimin indeksi:");
+                    int m= Convert.ToInt32(Console.ReadLine());
+                    teacherList.RemoveAt(m);
+                    break;
+
+                    case 5:Console.WriteLine("\n   Telebeler:");
+                    foreach(var stu in studentList)
+                    {
+                        Console.WriteLine($"{stu.Ad} {stu.Soyad} {stu.Ixtisas} {stu.Ortalama}");
+                    }
+                    Console.WriteLine("\n   Muellimler:");
+                    foreach(var tea in teacherList)
+                    {
+                        Console.WriteLine($"{tea.Ad} {tea.Soyad} {tea.Ixtisas} {tea.Staj}");
+                    }
+                    break;
+                }
+            }
+        }
+    }
+}
